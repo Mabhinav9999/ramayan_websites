@@ -18,9 +18,9 @@ const ramayanaCharacters = [
     networkLabel: 'Mithila-born · Rama’s alliance'
   },
   {
-    id: 'lakshmana', name: 'Lakshmana', formalName: 'Lakshmana', actor: 'Ravie Dubey', epithet: 'The steadfast brother', group: 'rama', groupLabel: 'Rama’s side',
+    id: 'lakshmana', name: 'Lakshmana', formalName: 'Lakshmana', actor: 'Ravi Dubey', epithet: 'The steadfast brother', group: 'rama', groupLabel: 'Rama’s side',
     origin: 'Ayodhya', allegiance: 'Rama’s alliance', tags: ['warriors', 'royals'],
-    original: 'assets/characters/lakshmana_original.png', portrayal: 'assets/actors/lakshmana_actor_ravie_dubey.png',
+    original: 'assets/characters/lakshmana_original.png', portrayal: 'assets/actors/lakshmana_actor_ravi_dubey.png',
     description: 'Rama’s devoted younger brother, who accompanies Rama and Sita into exile and protects them throughout their journey.',
     relationships: ['Brother: Rama', 'Sister-in-law: Sita', 'Brother: Bharata', 'Father: Dasharatha'],
     significance: 'Lakshmana represents loyalty expressed through action, sharing the hardships of exile and standing beside Rama in the struggle against Lanka.',
