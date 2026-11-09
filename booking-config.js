@@ -1,0 +1,71 @@
+const bookingConfig = {
+  checkedOn: '9 Nov 2026',
+  states: [
+    { name: 'Andhra Pradesh', cities: ['Amaravati', 'Visakhapatnam', 'Vijayawada', 'Guntur', 'Tirupati', 'Nellore', 'Kurnool', 'Rajahmundry', 'Kakinada'] },
+    { name: 'Arunachal Pradesh', cities: ['Itanagar', 'Naharlagun', 'Tawang', 'Pasighat', 'Ziro'] },
+    { name: 'Assam', cities: ['Guwahati', 'Dibrugarh', 'Silchar', 'Jorhat', 'Tezpur', 'Tinsukia', 'Nagaon'] },
+    { name: 'Bihar', cities: ['Patna', 'Gaya', 'Muzaffarpur', 'Bhagalpur', 'Darbhanga', 'Purnia', 'Bihar Sharif'] },
+    { name: 'Chhattisgarh', cities: ['Raipur', 'Bhilai', 'Durg', 'Bilaspur', 'Korba', 'Jagdalpur', 'Raigarh'] },
+    { name: 'Goa', cities: ['Panaji', 'Margao', 'Vasco da Gama', 'Mapusa', 'Ponda'] },
+    { name: 'Gujarat', cities: ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot', 'Gandhinagar', 'Bhavnagar', 'Jamnagar', 'Anand', 'Bhuj'] },
+    { name: 'Haryana', cities: ['Gurugram', 'Faridabad', 'Panipat', 'Ambala', 'Karnal', 'Hisar', 'Rohtak', 'Sonipat'] },
+    { name: 'Himachal Pradesh', cities: ['Shimla', 'Dharamshala', 'Solan', 'Mandi', 'Kullu', 'Manali', 'Hamirpur'] },
+    { name: 'Jharkhand', cities: ['Ranchi', 'Jamshedpur', 'Dhanbad', 'Bokaro', 'Hazaribagh', 'Deoghar'] },
+    { name: 'Karnataka', cities: ['Bengaluru', 'Mysuru', 'Mangaluru', 'Hubballi', 'Belagavi', 'Shivamogga', 'Kalaburagi', 'Udupi', 'Davangere'] },
+    { name: 'Kerala', cities: ['Kochi', 'Thiruvananthapuram', 'Kozhikode', 'Thrissur', 'Kollam', 'Kannur', 'Alappuzha', 'Kottayam', 'Palakkad'] },
+    { name: 'Madhya Pradesh', cities: ['Indore', 'Bhopal', 'Jabalpur', 'Gwalior', 'Ujjain', 'Sagar', 'Rewa', 'Satna'] },
+    { name: 'Maharashtra', cities: ['Mumbai', 'Pune', 'Nagpur', 'Nashik', 'Thane', 'Chhatrapati Sambhajinagar', 'Chhatrapati Sambhajinagar (Aurangabad)', 'Kolhapur', 'Navi Mumbai', 'Solapur'] },
+    { name: 'Manipur', cities: ['Imphal', 'Thoubal', 'Bishnupur', 'Churachandpur'] },
+    { name: 'Meghalaya', cities: ['Shillong', 'Tura', 'Jowai', 'Nongpoh'] },
+    { name: 'Mizoram', cities: ['Aizawl', 'Lunglei', 'Champhai', 'Kolasib'] },
+    { name: 'Nagaland', cities: ['Kohima', 'Dimapur', 'Mokokchung', 'Wokha'] },
+    { name: 'Odisha', cities: ['Bhubaneswar', 'Cuttack', 'Rourkela', 'Sambalpur', 'Berhampur', 'Puri', 'Balasore'] },
+    { name: 'Punjab', cities: ['Amritsar', 'Ludhiana', 'Jalandhar', 'Patiala', 'Mohali', 'Bathinda', 'Pathankot'] },
+    { name: 'Rajasthan', cities: ['Jaipur', 'Jodhpur', 'Udaipur', 'Kota', 'Ajmer', 'Bikaner', 'Alwar', 'Sikar'] },
+    { name: 'Sikkim', cities: ['Gangtok', 'Namchi', 'Gyalshing', 'Mangan'] },
+    { name: 'Tamil Nadu', cities: ['Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli', 'Salem', 'Vellore', 'Tirunelveli', 'Erode', 'Tiruppur'] },
+    { name: 'Telangana', cities: ['Hyderabad', 'Warangal', 'Karimnagar', 'Khammam', 'Nizamabad', 'Mahbubnagar', 'Nalgonda'] },
+    { name: 'Tripura', cities: ['Agartala', 'Udaipur', 'Dharmanagar', 'Kailashahar'] },
+    { name: 'Uttar Pradesh', cities: ['Noida', 'Lucknow', 'Kanpur', 'Agra', 'Varanasi', 'Ghaziabad', 'Prayagraj', 'Meerut', 'Gorakhpur', 'Bareilly'] },
+    { name: 'Uttarakhand', cities: ['Dehradun', 'Haridwar', 'Roorkee', 'Haldwani', 'Rudrapur', 'Rishikesh', 'Kashipur'] },
+    { name: 'West Bengal', cities: ['Kolkata', 'Howrah', 'Siliguri', 'Durgapur', 'Asansol', 'Kharagpur', 'Bardhaman'] },
+    { name: 'Andaman and Nicobar Islands', cities: ['Port Blair', 'Diglipur', 'Mayabunder', 'Rangat'] },
+    { name: 'Chandigarh', cities: ['Chandigarh'] },
+    { name: 'Dadra and Nagar Haveli and Daman and Diu', cities: ['Silvassa', 'Daman', 'Diu', 'Dadra'] },
+    { name: 'Delhi', cities: ['New Delhi', 'Delhi NCR', 'Dwarka', 'Rohini', 'Saket'] },
+    { name: 'Jammu and Kashmir', cities: ['Srinagar', 'Jammu', 'Anantnag', 'Baramulla', 'Udhampur'] },
+    { name: 'Ladakh', cities: ['Leh', 'Kargil'] },
+    { name: 'Lakshadweep', cities: ['Kavaratti', 'Agatti'] },
+    { name: 'Puducherry', cities: ['Puducherry', 'Karaikal', 'Yanam', 'Mahe'] }
+  ],
+  formats: ['2D', '3D', '4DX', 'Dolby Cinema', 'ScreenX', 'IMAX'],
+  platforms: [
+    { id: 'bookmyshow', name: 'BookMyShow', logo: 'bookmyshow', className: 'brand-bms', fallback: 'https://in.bookmyshow.com/', fallbackLabel: 'No city listing verified · search manually' },
+    { id: 'district', name: 'District', logo: 'district', className: 'brand-district', fallback: 'https://www.district.in/movies', fallbackLabel: 'No city listing verified · search manually' },
+    { id: 'pvr', name: 'PVR INOX', logo: 'PVR INOX', className: 'brand-pvr', fallback: 'https://www.pvrcinemas.com/', fallbackLabel: 'No city listing verified · search manually' },
+    { id: 'cinepolis', name: 'Cinépolis India', logo: 'Cinépolis', className: 'brand-cinepolis', fallback: 'https://cinepolisindia.com/', fallbackLabel: 'No city listing verified · search manually' },
+    { id: 'ticketnew', name: 'TicketNew', logo: 'ticketnew', className: 'brand-ticketnew', fallback: 'https://ticketnew.com/', fallbackLabel: 'No city listing verified · search manually' },
+    { id: 'ticket9', name: 'Ticket9', logo: 'ticket9', className: 'brand-ticket9', fallback: 'https://ticket9.in/', fallbackLabel: 'No city listing verified · search manually' }
+  ],
+  verifiedListings: {
+    bookmyshow: {
+      mumbai: { url: 'https://in.bookmyshow.com/movies/mumbai/ramayana/ET00451914', region: 'Mumbai', state: 'Maharashtra', formats: ['2D', '3D', 'Dolby Cinema'] }
+    },
+    district: {
+      ahmedabad: { url: 'https://www.district.in/movies/namit-malhotra-s-ramayana-movie-tickets-in-ahmedabad-MV176276', region: 'Ahmedabad', state: 'Gujarat', formats: ['3D', '4DX'] },
+      chandigarh: { url: 'https://www.district.in/movies/namit-malhotra-s-ramayana-movie-tickets-in-chandigarh-MV176276', region: 'Chandigarh', state: 'Chandigarh', formats: ['3D', '4DX'] },
+      mumbai: { url: 'https://www.district.in/movies/ramayana-movie-tickets-in-mumbai-MV176276', region: 'Mumbai', state: 'Maharashtra', formats: ['3D', 'IMAX'] },
+      bengaluru: { url: 'https://www.district.in/movies/ramayana-movie-tickets-in-bengaluru-MV176276', region: 'Bengaluru', state: 'Karnataka', formats: ['3D', '4DX', 'IMAX'] },
+      bangalore: { url: 'https://www.district.in/movies/ramayana-movie-tickets-in-bengaluru-MV176276', region: 'Bengaluru', state: 'Karnataka', formats: ['3D', '4DX', 'IMAX'] },
+      gurugram: { url: 'https://www.district.in/movies/ramayana-movie-tickets-in-gurgaon-MV176276', region: 'Gurugram', state: 'Haryana', formats: ['3D', 'IMAX'] },
+      gurgaon: { url: 'https://www.district.in/movies/ramayana-movie-tickets-in-gurgaon-MV176276', region: 'Gurugram', state: 'Haryana', formats: ['3D', 'IMAX'] },
+      hyderabad: { url: 'https://www.district.in/movies/namit-malhotra-s-ramayana-movie-tickets-in-hyderabad-MV176276', region: 'Hyderabad', state: 'Telangana', formats: ['3D', '4DX'] },
+      lucknow: { url: 'https://www.district.in/movies/namit-malhotra-s-ramayana-movie-tickets-in-lucknow-MV176276', region: 'Lucknow', state: 'Uttar Pradesh', formats: ['3D', 'IMAX'] },
+      'delhi ncr': { url: 'https://www.district.in/movies/ramayana-movie-tickets-in-delhi-ncr-MV176276', region: 'Delhi NCR', state: 'Delhi', formats: ['3D', 'IMAX'] },
+      'new delhi': { url: 'https://www.district.in/movies/ramayana-movie-tickets-in-delhi-ncr-MV176276', region: 'Delhi NCR', state: 'Delhi', formats: ['3D', 'IMAX'] },
+      dwarka: { url: 'https://www.district.in/movies/ramayana-movie-tickets-in-delhi-ncr-MV176276', region: 'Delhi NCR', state: 'Delhi', formats: ['3D', 'IMAX'] },
+      rohini: { url: 'https://www.district.in/movies/ramayana-movie-tickets-in-delhi-ncr-MV176276', region: 'Delhi NCR', state: 'Delhi', formats: ['3D', 'IMAX'] },
+      saket: { url: 'https://www.district.in/movies/ramayana-movie-tickets-in-delhi-ncr-MV176276', region: 'Delhi NCR', state: 'Delhi', formats: ['3D', 'IMAX'] }
+    }
+  }
+};
