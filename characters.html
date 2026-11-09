@@ -40,7 +40,6 @@
         <a href="#character-profiles">Profiles</a>
         <a href="#relationship-explorer">Relationships</a>
         <a href="#kingdom-explorer">Kingdoms &amp; allegiance</a>
-        <a href="#character-comparison">Original vs portrayal</a>
       </nav>
 
       <section class="character-subsection" id="character-overview" aria-labelledby="overview-title">
@@ -106,7 +105,6 @@
             <div class="profile-badges"><span id="profileOrigin"></span><span id="profileAllegiance"></span></div>
             <p class="profile-description" id="profileDescription"></p>
             <div class="profile-facts"><div><h5>Family &amp; connections</h5><ul id="profileRelationships"></ul></div><div><h5>Mythological significance</h5><p id="profileSignificance"></p></div></div>
-            <button type="button" class="text-link profile-compare-link" id="compareThisCharacter">Compare original &amp; portrayal <span>↘</span></button>
           </div>
         </article>
       </section>
@@ -140,18 +138,6 @@
         <p class="kingdom-footnote">Origin and allegiance are shown separately. Vibhishana is of Lanka by birth and later joins Rama’s alliance.</p>
       </section>
 
-      <section class="character-subsection comparison-subsection" id="character-comparison" aria-labelledby="comparison-title">
-        <div class="character-section-heading">
-          <div><p class="eyebrow">ARTWORK ↔ ACTOR PORTRAYAL</p><h3 id="comparison-title">One legend,<br><em>two interpretations.</em></h3></div>
-          <p>Compare the supplied original character artwork with the supplied movie portrayal.</p>
-        </div>
-        <div class="comparison-controls"><button type="button" id="previousComparison" aria-label="Previous comparison">←</button><label><span class="sr-only">Choose a character to compare</span><select id="comparisonSelect"></select></label><button type="button" id="nextComparison" aria-label="Next comparison">→</button></div>
-        <div class="comparison-pair" id="comparisonPair">
-          <figure class="comparison-image original-frame"><figcaption>ORIGINAL CHARACTER</figcaption><button type="button" class="image-zoom" data-zoom-image="comparisonOriginal"><img id="comparisonOriginal" alt=""></button><p id="comparisonOriginalCaption"></p></figure>
-          <div class="comparison-divider" aria-hidden="true">VS</div>
-          <figure class="comparison-image portrayal-frame"><figcaption>PORTRAYED BY <span id="comparisonActorLabel"></span></figcaption><button type="button" class="image-zoom" data-zoom-image="comparisonActor"><img id="comparisonActor" alt=""></button><p id="comparisonActorCaption"></p><small class="portrayal-note" id="comparisonPortrayalNote" hidden></small></figure>
-        </div>
-      </section>
     </section>
 
 

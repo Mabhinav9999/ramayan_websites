@@ -132,9 +132,7 @@ const characterById = new Map(ramayanaCharacters.map((character) => [character.i
 const preferredMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const characterGallery = document.querySelector('#characterGallery');
 const profileSelect = document.querySelector('#profileSelect');
-const comparisonSelect = document.querySelector('#comparisonSelect');
 let activeProfileId = 'rama';
-let activeComparisonId = 'rama';
 
 function makeImageMarkup(character, imageKind, alt, className = '') {
   const source = character[imageKind];
@@ -153,7 +151,6 @@ function renderGallery() {
     grid.innerHTML = ramayanaCharacters.filter((character) => character.group === grid.dataset.characterGrid).map(renderCharacterCard).join('');
   });
   profileSelect.innerHTML = ramayanaCharacters.map((character) => `<option value="${character.id}">${character.formalName} · ${character.actor}</option>`).join('');
-  comparisonSelect.innerHTML = ramayanaCharacters.map((character) => `<option value="${character.id}">${character.formalName}</option>`).join('');
   applyCharacterFilters();
 }
 
@@ -209,7 +206,7 @@ function setProfileImage(elementId, src, alt) {
     image.alt = alt;
     zoomButton.dataset.imageCaption = alt;
     zoomButton.setAttribute('aria-label', `Enlarge image: ${alt}`);
-    image.closest('.profile-image-frame, .comparison-image')?.classList.remove('image-missing');
+    image.closest('.profile-image-frame')?.classList.remove('image-missing');
   };
   applyImage();
   if (image.getAttribute('src') === src) return;
@@ -231,22 +228,6 @@ function setProfileImage(elementId, src, alt) {
     image.classList.remove('is-changing');
   };
   nextImage.src = src;
-}
-
-function updateComparison(characterId) {
-  const character = characterById.get(characterId);
-  if (!character) return;
-  activeComparisonId = character.id;
-  comparisonSelect.value = character.id;
-  setProfileImage('comparisonOriginal', character.original, `Original character artwork of ${character.formalName}`);
-  setProfileImage('comparisonActor', character.portrayal, `Supplied portrayal image for ${character.formalName}, portrayed by ${character.actor}`);
-  document.querySelector('#comparisonOriginalCaption').textContent = character.formalName;
-  document.querySelector('#comparisonActorLabel').textContent = character.actor.toUpperCase();
-  document.querySelector('#comparisonActorCaption').textContent = character.actor;
-  const comparisonNote = document.querySelector('#comparisonPortrayalNote');
-  comparisonNote.textContent = character.portrayalNote || '';
-  comparisonNote.hidden = !character.portrayalNote;
-  document.querySelector('#comparisonPair').dataset.activeCharacter = character.id;
 }
 
 function moveCharacter(currentId, offset, update) {
@@ -345,7 +326,6 @@ function initializeCharacterExplorer() {
   renderRelationships();
   renderKingdom();
   updateProfile(activeProfileId);
-  updateComparison(activeComparisonId);
   setupImageFallbacks();
 
   document.querySelectorAll('[data-character-filter]').forEach((button) => {
@@ -373,14 +353,6 @@ function initializeCharacterExplorer() {
   profileSelect.addEventListener('change', () => updateProfile(profileSelect.value));
   document.querySelector('#previousCharacter').addEventListener('click', () => moveCharacter(activeProfileId, -1, updateProfile));
   document.querySelector('#nextCharacter').addEventListener('click', () => moveCharacter(activeProfileId, 1, updateProfile));
-  document.querySelector('#compareThisCharacter').addEventListener('click', () => {
-    updateComparison(activeProfileId);
-    document.querySelector('#character-comparison').scrollIntoView({ behavior: preferredMotion ? 'auto' : 'smooth', block: 'start' });
-  });
-
-  comparisonSelect.addEventListener('change', () => updateComparison(comparisonSelect.value));
-  document.querySelector('#previousComparison').addEventListener('click', () => moveCharacter(activeComparisonId, -1, updateComparison));
-  document.querySelector('#nextComparison').addEventListener('click', () => moveCharacter(activeComparisonId, 1, updateComparison));
 
   document.querySelectorAll('[data-kingdom-filter]').forEach((button) => {
     button.addEventListener('click', () => {
