@@ -2,7 +2,7 @@ const ramayanaCharacters = [
   {
     id: 'rama', name: 'Rama', formalName: 'Lord Rama', actor: 'Ranbir Kapoor', epithet: 'The exiled prince', group: 'rama', groupLabel: 'Rama’s side',
     origin: 'Ayodhya', allegiance: 'Rama’s alliance', tags: ['warriors', 'royals'],
-    original: 'assets/actors/rama_actor_ranbir.png', portrayal: 'assets/characters/rama_original.png',
+    original: 'assets/characters/rama_original.png', portrayal: 'assets/actors/rama_actor_ranbir.png',
     description: 'Prince of Ayodhya and an embodiment of dharma, courage and righteousness. His exile and conflict with Ravana form the central journey of the Ramayana.',
     relationships: ['Wife: Sita', 'Brothers: Lakshmana and Bharata', 'Father: Dasharatha', 'Devoted allies: Hanuman and Vibhishana'],
     significance: 'Rama’s choices place duty and compassion at the centre of the epic. His return from exile restores the balance of Ayodhya.',
