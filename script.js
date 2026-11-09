@@ -1,34 +1,38 @@
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.main-nav');
-const heroVideo = document.querySelector('.hero-video');
+const videoSource = document.querySelector('.video-source');
+const videoCreditTrigger = document.querySelector('.video-source-trigger');
+const toast = document.querySelector('.status-toast');
+let toastTimer;
 
-if (heroVideo) {
-  const videoId = heroVideo.dataset.videoId;
+videoCreditTrigger.addEventListener('click', () => {
+  const open = !videoSource.classList.contains('is-open');
+  videoSource.classList.toggle('is-open', open);
+  videoCreditTrigger.setAttribute('aria-expanded', String(open));
+});
 
-  if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-    const playerParams = new URLSearchParams({
-      autoplay: '1',
-      mute: '1',
-      loop: '1',
-      playlist: videoId,
-      controls: '1',
-      playsinline: '1',
-      rel: '0',
-      origin: window.location.origin
-    });
-
-    heroVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}?${playerParams}`;
-  } else {
-    heroVideo.remove();
-    const fallback = document.createElement('a');
-    fallback.className = 'video-fallback';
-    fallback.href = `https://youtu.be/${videoId}`;
-    fallback.target = '_blank';
-    fallback.rel = 'noopener noreferrer';
-    fallback.textContent = 'Watch the trailer on YouTube ↗';
-    document.querySelector('.hero-copy .button').after(fallback);
+document.addEventListener('click', (event) => {
+  if (!videoSource.contains(event.target)) {
+    videoSource.classList.remove('is-open');
+    videoCreditTrigger.setAttribute('aria-expanded', 'false');
   }
-}
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    videoSource.classList.remove('is-open');
+    videoCreditTrigger.setAttribute('aria-expanded', 'false');
+  }
+});
+
+document.querySelectorAll('[data-coming-soon]').forEach((button) => {
+  button.addEventListener('click', () => {
+    toast.textContent = `${button.dataset.comingSoon} — coming soon`;
+    toast.classList.add('visible');
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => toast.classList.remove('visible'), 2200);
+  });
+});
 
 menuButton.addEventListener('click', () => {
   const open = menuButton.getAttribute('aria-expanded') !== 'true';

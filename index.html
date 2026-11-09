@@ -20,36 +20,42 @@
       <a href="#story">The Story</a>
       <a href="#chapters">Chapters</a>
       <a href="#characters">Characters</a>
-      <a class="nav-cta" href="#journey">Begin the journey <span>↗</span></a>
+      <button class="nav-cta" type="button" data-coming-soon="Get Tickets">Get Tickets <span>↗</span></button>
+      <button class="share-button" type="button" data-coming-soon="Share">Share <span>↗</span></button>
     </nav>
   </header>
 
   <main>
     <section class="hero" id="home" aria-labelledby="hero-title">
-      <iframe class="hero-video" data-video-id="1zip1rNaNYs" title="Watch the Ramayana official trailer" allow="autoplay; encrypted-media; picture-in-picture; web-share" loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      <div class="hero-art" aria-hidden="true">
-        <div class="celestial-halo"></div><div class="sea-glow"></div>
-        <svg class="bow" viewBox="0 0 310 610" fill="none">
-          <path d="M82 18C268 162 266 440 82 592" stroke="url(#bowGold)" stroke-width="6"/>
-          <path d="M82 18L217 305L82 592" stroke="#f7e3ad" stroke-opacity=".7" stroke-width="1.4"/>
-          <path d="M191 305H306" stroke="#ffdb91" stroke-width="1.5"/>
-          <path d="M293 297L309 305L293 313" stroke="#ffdb91" stroke-width="1.5"/>
-          <circle cx="82" cy="18" r="5" fill="#fff0c5"/><circle cx="82" cy="592" r="5" fill="#fff0c5"/>
-          <defs><linearGradient id="bowGold" x1="80" y1="20" x2="250" y2="590" gradientUnits="userSpaceOnUse"><stop stop-color="#ffe5a1"/><stop offset=".45" stop-color="#bd7846"/><stop offset="1" stop-color="#ffe9ad"/></linearGradient></defs>
-        </svg>
-        <div class="figure figure-blue"><span></span><i></i></div>
-        <div class="figure figure-red"><span></span><i></i></div>
-        <div class="horizon"></div>
-      </div>
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/ramayana-trailer-thumbnail.jpg" aria-label="Ramayana cinematic trailer playing in the background">
+        <source src="assets/ramayana-hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-copy hero-title-card">
         <p class="hero-credit">A CINEMATIC VISION BY <span>NAMIT MALHOTRA</span></p>
         <h1 id="hero-title">Ramayana</h1>
         <p class="hero-release">IN THEATERS NOW</p>
         <p class="hero-format">FILMED FOR IMAX</p>
-        <a class="button button-gold" href="#story">Explore the epic <span>↓</span></a>
+        <div class="hero-actions">
+          <a class="button hero-button" href="https://youtu.be/1zip1rNaNYs?si=xw6AS2-Vv5v3imYH" target="_blank" rel="noopener noreferrer">Watch Trailer <span>↗</span></a>
+          <button class="button hero-button" type="button" data-coming-soon="Face Your Fate">Face Your Fate <span>↗</span></button>
+        </div>
       </div>
-      <div class="hero-meta"><span>THE RAMAYANA</span><span>01 — 07</span></div>
-      <a class="scroll-cue" href="#story"><span></span> SCROLL TO DISCOVER</a>
+      <div class="hero-bottomline"><span>AN ANCIENT TALE · ETERNAL TRUTHS</span><span>PART ONE · 2026</span></div>
+      <div class="video-source">
+        <button class="video-source-trigger" type="button" aria-expanded="false" aria-controls="videoSourceCard">VIDEO CREDIT <span>＋</span></button>
+        <a class="video-source-card" id="videoSourceCard" href="https://youtu.be/1zip1rNaNYs?si=xw6AS2-Vv5v3imYH" target="_blank" rel="noopener noreferrer" aria-label="View the official Ramayana trailer on YouTube">
+          <img src="assets/ramayana-trailer-thumbnail.jpg" alt="Frame from the Ramayana trailer showing Rama with his bow">
+          <span class="video-source-copy"><small>OFFICIAL TRAILER</small><strong>Ramayana</strong><em>SONY PICTURES ENTERTAINMENT</em><b>Watch on YouTube ↗</b></span>
+        </a>
+      </div>
+      <div class="hero-socials" aria-label="Social links">
+        <button type="button" aria-label="Facebook" data-coming-soon="Facebook">f</button>
+        <button type="button" aria-label="Instagram" data-coming-soon="Instagram">◎</button>
+        <button type="button" aria-label="X" data-coming-soon="X">𝕏</button>
+        <button type="button" aria-label="TikTok" data-coming-soon="TikTok">♪</button>
+        <button type="button" aria-label="YouTube" data-coming-soon="YouTube">▶</button>
+      </div>
     </section>
 
     <section class="story section-pad" id="story">
@@ -88,6 +94,7 @@
   </main>
 
   <footer class="site-footer"><a class="wordmark" href="#home">R<span>ā</span>māyaṇa<small>AN EPIC JOURNEY</small></a><p>An ancient story, retold for today.</p><a href="#home" class="back-top">BACK TO TOP ↑</a><small class="copyright">© 2026 RAMAYANA · A STORY FOR THE AGES</small></footer>
+  <div class="status-toast" role="status" aria-live="polite"></div>
   <script src="script.js"></script>
 </body>
 </html>
