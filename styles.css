@@ -14,3 +14,4 @@
 @media(hover:none){.hero:hover .video-source-card{opacity:0;visibility:hidden;transform:translateY(8px)}.video-source.is-open .video-source-card{opacity:1;visibility:visible;transform:translateY(0)}}
 .hero-copy.hero-title-card{top:57%}@media(max-width:620px){.hero-copy.hero-title-card{top:56%}}
 .hero:after{display:none}
+.site-header{border-bottom:0}
