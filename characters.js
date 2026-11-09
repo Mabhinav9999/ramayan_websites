@@ -13,7 +13,7 @@ const ramayanaCharacters = [
     origin: 'Mithila by birth · Ayodhya by marriage', allegiance: 'Rama’s alliance', tags: ['royals'],
     original: 'assets/characters/sita_original.png', portrayal: 'assets/actors/sita_actor_sai_pallavi.png',
     description: 'Princess of Mithila and Rama’s wife, remembered for her dignity, resilience, devotion and strength through exile and captivity in Lanka.',
-    relationships: ['Husband: Rama', 'Father: King Janaka', 'Sister-in-law: Lakshmana', 'Protected by Jatayu during her abduction'],
+    relationships: ['Husband: Rama', 'Father: King Janaka', 'Brother-in-law: Lakshmana', 'Protected by Jatayu during her abduction'],
     significance: 'Sita’s resolve gives the epic one of its clearest portraits of inner strength. Her story moves between Mithila, the forest and Lanka.',
     networkLabel: 'Mithila-born · Rama’s alliance'
   },
@@ -40,7 +40,7 @@ const ramayanaCharacters = [
     origin: 'Forest realm · Vulture king', allegiance: 'Rama’s ally', tags: ['warriors', 'allies'],
     original: 'assets/characters/jatayu_original.png', portrayal: 'assets/actors/jatayu_actor_anupam_kher.png',
     description: 'The noble vulture king who attempts to rescue Sita from Ravana and is gravely wounded in the struggle.',
-    relationships: ['Defends Sita during her abduction', 'Gives Rama important news about her direction of travel'],
+    relationships: ['Tries to rescue Sita from Ravana', 'Tells Rama that Ravana carried Sita south toward Lanka'],
     significance: 'Jatayu’s stand is an act of courage and compassion. Though defeated, his testimony helps Rama continue the search.',
     portrayalNote: 'The supplied actor-side image is a composite promotional image, not a standalone film still.',
     networkLabel: 'Forest ally · Defends Sita'
@@ -68,7 +68,7 @@ const ramayanaCharacters = [
     origin: 'Lanka', allegiance: 'Lanka', tags: ['warriors', 'royals'],
     original: 'assets/characters/ravana_original.png', portrayal: 'assets/actors/ravana_actor_yash.png',
     description: 'The powerful king of Lanka, renowned for his knowledge, strength, scholarship and devotion to Shiva. His abduction of Sita brings him into conflict with Rama.',
-    relationships: ['Wife: Mandodari', 'Brothers: Kumbhakarna and Vibhishana', 'Sister: Surpanakha'],
+    relationships: ['Wife: Mandodari', 'Brothers: Kumbhakarna and Vibhishana', 'Sister: Surpanakha', 'Abducts Sita, prompting Rama’s campaign against Lanka'],
     significance: 'Ravana is a formidable ruler and scholar whose pride and refusal to return Sita turn his conflict with Rama into the epic’s central war.',
     networkLabel: 'Lanka · King'
   },
@@ -104,7 +104,7 @@ const ramayanaCharacters = [
     origin: 'Ayodhya', allegiance: 'Ayodhya · royal household', tags: ['royals'],
     original: 'assets/characters/dasharatha_original.png', portrayal: 'assets/actors/dasharatha_actor_arun_govil.png',
     description: 'King of Ayodhya and father of Rama, Bharata, Lakshmana and Shatrughna. His promises to Kaikeyi lead to Rama’s exile.',
-    relationships: ['Sons: Rama, Bharata and Lakshmana', 'Queens: Kaushalya, Kaikeyi and Sumitra'],
+    relationships: ['Sons: Rama, Bharata, Lakshmana and Shatrughna', 'Queens: Kaushalya, Kaikeyi and Sumitra'],
     significance: 'Dasharatha’s word binds him to a painful promise and sets the exile in motion, even as he grieves its consequences.',
     networkLabel: 'Ayodhya · Father of Rama'
   },
@@ -204,12 +204,33 @@ function updateProfile(characterId, shouldScroll = false) {
 
 function setProfileImage(elementId, src, alt) {
   const image = document.getElementById(elementId);
-  image.src = src;
-  image.alt = alt;
   const zoomButton = image.closest('.image-zoom');
-  zoomButton.dataset.imageCaption = alt;
-  zoomButton.setAttribute('aria-label', `Enlarge image: ${alt}`);
-  image.closest('.profile-image-frame, .comparison-image')?.classList.remove('image-missing');
+  const applyImage = () => {
+    image.alt = alt;
+    zoomButton.dataset.imageCaption = alt;
+    zoomButton.setAttribute('aria-label', `Enlarge image: ${alt}`);
+    image.closest('.profile-image-frame, .comparison-image')?.classList.remove('image-missing');
+  };
+  applyImage();
+  if (image.getAttribute('src') === src) return;
+
+  const requestId = Number(image.dataset.imageRequest || 0) + 1;
+  image.dataset.imageRequest = String(requestId);
+  image.classList.add('is-changing');
+  const nextImage = new Image();
+  nextImage.onload = () => {
+    if (image.dataset.imageRequest !== String(requestId)) return;
+    image.src = src;
+    applyImage();
+    requestAnimationFrame(() => requestAnimationFrame(() => image.classList.remove('is-changing')));
+  };
+  nextImage.onerror = () => {
+    if (image.dataset.imageRequest !== String(requestId)) return;
+    image.src = src;
+    applyImage();
+    image.classList.remove('is-changing');
+  };
+  nextImage.src = src;
 }
 
 function updateComparison(characterId) {
@@ -242,10 +263,12 @@ function renderRelationships() {
   };
   const edges = [
     ['dasharatha', 'rama', 'family', 'father'], ['dasharatha', 'lakshmana', 'family', 'father'], ['dasharatha', 'bharata', 'family', 'father'],
-    ['dasharatha', 'kaikeyi', 'marriage', 'marriage'], ['kaikeyi', 'bharata', 'family', 'mother'], ['kaikeyi', 'manthara', 'advisory', 'adviser'],
+    ['dasharatha', 'kaikeyi', 'marriage', 'marriage'], ['kaikeyi', 'bharata', 'family', 'mother'], ['manthara', 'kaikeyi', 'advisory', 'influences Kaikeyi to claim the boons'],
     ['rama', 'sita', 'marriage', 'marriage'], ['rama', 'lakshmana', 'family', 'brothers'], ['rama', 'bharata', 'family', 'brothers'],
-    ['rama', 'hanuman', 'alliance', 'devotion and alliance'], ['rama', 'vibhishana', 'alliance', 'alliance after Vibhishana leaves Lanka'],
-    ['sita', 'jatayu', 'alliance', 'defends Sita'], ['ravana', 'sita', 'conflict', 'conflict'],
+    ['rama', 'hanuman', 'alliance', 'devotion and alliance'], ['rama', 'vibhishana', 'alliance', 'Vibhishana leaves Lanka and joins Rama'],
+    ['lakshmana', 'bharata', 'family', 'brothers'],
+    ['jatayu', 'rama', 'alliance', 'tells Rama where Ravana carried Sita'], ['jatayu', 'ravana', 'conflict', 'tries to rescue Sita from Ravana'],
+    ['rama', 'ravana', 'conflict', 'war for Sita'], ['ravana', 'sita', 'conflict', 'abducts Sita'],
     ['ravana', 'mandodari', 'marriage', 'marriage'], ['ravana', 'kumbhakarna', 'family', 'brothers'],
     ['ravana', 'vibhishana', 'family', 'brothers'], ['ravana', 'surpanakha', 'family', 'siblings']
   ];
@@ -253,7 +276,9 @@ function renderRelationships() {
   const lines = edges.map(([from, to, kind, label]) => {
     const [x1, y1] = center(positions[from]);
     const [x2, y2] = center(positions[to]);
-    return `<line class="relationship-edge edge-${kind}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"><title>${characterById.get(from).formalName} — ${label} — ${characterById.get(to).formalName}</title></line>`;
+    const route = from === 'rama' && to === 'ravana' ? ' Q 770 85' : from === 'rama' && to === 'vibhishana' ? ' Q 790 280' : from === 'dasharatha' && to === 'lakshmana' ? ' Q 140 270' : '';
+    const path = route ? `M ${x1} ${y1}${route} ${x2} ${y2}` : `M ${x1} ${y1} L ${x2} ${y2}`;
+    return `<path class="relationship-edge edge-${kind}" d="${path}"><title>${characterById.get(from).formalName} — ${label} — ${characterById.get(to).formalName}</title></path>`;
   }).join('');
   const nodes = ramayanaCharacters.map((character) => {
     const [left, top] = positions[character.id];
